@@ -1,0 +1,52 @@
+body {
+  text-align: center;
+}
+.input-num, .result, .show-chc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.input-num p{
+  display: inline-block;
+  line-height: 80px;
+}
+.input-num input{
+  height: 80px;
+  width: 300px;
+  font-size: 80px;
+}
+.btn-go{
+  height: 80px;
+  width: 80px;
+  background-color: green;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}
+.btn-go:disabled {
+  background-color: #eee;
+  cursor: none;
+}
+.btn-reset{
+  font-size: 24px;
+  display: block;
+  margin: 0 auto;
+  padding: 2px;
+  width: 240px;
+  height: 80px;
+  cursor: pointer;
+  background-color: violet;
+  color: #fff;
+  margin-top: 50px;
+}
+button{
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+.result h3 {
+  font-size: 30px;
+  font-weight: bold;
+}
