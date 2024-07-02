@@ -9,17 +9,19 @@
 // 유저가 이미 입력한 숫자를 입력하면 알려준다. 기회를 깎지 않는다.
 document.addEventListener("DOMContentLoaded", function() {
   let comMakeRandomNum = 0;
+  let answer = document.getElementById("answer");
   function pickRandomNum(){
     comMakeRandomNum = Math.floor(Math.random()*100)+1
     console.log("랜덤숫자", comMakeRandomNum)
+    answer.textContent=comMakeRandomNum;
   }
   pickRandomNum();
-
+  
   let goBtn = document.getElementById("btn-go");
   let userInput = document.getElementById("user-input");
   let resultArea = document.getElementById("result-area");
   let chanceArea = document.getElementById("chance-area");
-  let chances = 5;
+  let chances = 3;
   let gameOver = false;
   let resetBtn = document.getElementById("btn-reset");
   goBtn.addEventListener("click", play);
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function play(){
     let userValue = userInput.value; 
     console.log("사용자가 입력한 숫자", userValue);
-
+    
     //유효성 검사
     if(userValue < 1 || userValue > 100){
       resultArea.textContent="1과 100사이 숫자를 입력해주세요"
@@ -40,8 +42,6 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
     
-
-
     chances--;
     chanceArea.textContent = `${chances}번`
     if(userValue > comMakeRandomNum){
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
       gameOver = true;
     }
     history.push(userValue);
-
+    
     
     if(chances < 1){
       gameOver = true;
@@ -61,19 +61,23 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if(gameOver) {
       goBtn.disabled = true;
+      if(userValue != comMakeRandomNum)
       resultArea.textContent = `정답은 ${comMakeRandomNum}입니다`
     }
   }
-
+  
   function reset(){
     //input 창 정리
     userInput.value="";
     pickRandomNum()
     resultArea.textContent="결과값이 여기 나옵니다."
-    chances = 5;
-    chanceArea.textContent = `${chances}번`
+    chances = 3;
+    chanceArea.textContent = `${chances}번`;
+    goBtn.disabled = false;
+    history=[];
+    answer.textContent=comMakeRandomNum;
   }
-
+  
   userInput.addEventListener("focus", function(){
     userInput.value=""
   })
