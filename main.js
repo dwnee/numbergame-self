@@ -10,13 +10,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   let comMakeRandomNum = 0;
   let answer = document.getElementById("answer");
-  function pickRandomNum(){
-    comMakeRandomNum = Math.floor(Math.random()*100)+1
-    console.log("랜덤숫자", comMakeRandomNum)
-    answer.textContent=comMakeRandomNum;
-  }
-  pickRandomNum();
-  
   let goBtn = document.getElementById("btn-go");
   let userInput = document.getElementById("user-input");
   let resultArea = document.getElementById("result-area");
@@ -24,9 +17,17 @@ document.addEventListener("DOMContentLoaded", function() {
   let chances = 3;
   let gameOver = false;
   let resetBtn = document.getElementById("btn-reset");
+  let history = [];
+
   goBtn.addEventListener("click", play);
   resetBtn.addEventListener("click", reset);
-  let history = [];
+  
+  function pickRandomNum(){
+    comMakeRandomNum = Math.floor(Math.random()*100)+1
+    console.log("랜덤숫자", comMakeRandomNum)
+    answer.textContent=comMakeRandomNum;
+  }
+  pickRandomNum();
   
   function play(){
     let userValue = userInput.value; 
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
     goBtn.disabled = false;
     history=[];
     answer.textContent=comMakeRandomNum;
+    gameOver = false;
   }
   
   userInput.addEventListener("focus", function(){
